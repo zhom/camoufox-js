@@ -8,9 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy-files": "cp -r src/data-files dist/data-files"
   },
-  "bin": {
-    "camoufox": "dist/__main__.js"
-  },
+  "bin": "dist/__main__.js",
   "files": [
     "dist"
   ],

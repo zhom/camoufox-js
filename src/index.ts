@@ -1,1 +1,1 @@
-export { Camoufox } from './sync_api.js';
+export { Camoufox, NewBrowser } from './sync_api.js';

@@ -12,7 +12,7 @@ export async function Camoufox(launch_options: LaunchOptions) {
     return NewBrowser(firefox, false, {}, false, false, launch_options);
 }
 
-async function NewBrowser(
+export async function NewBrowser(
     playwright: BrowserType<Browser>,
     headless: boolean | 'virtual' = false,
     fromOptions: Record<string, any> = {},

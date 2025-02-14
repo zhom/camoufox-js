@@ -38,7 +38,7 @@ if (!(process.platform in OS_MAP)) {
 export const OS_NAME: 'mac' | 'win' | 'lin' = OS_MAP[process.platform];
 
 export const INSTALL_DIR: PathLike = path.join(os.homedir(), '.cache', 'camoufox');
-export const LOCAL_DATA: PathLike = path.dirname(import.meta.dirname);
+export const LOCAL_DATA: PathLike = path.join(import.meta.dirname, 'data-files');
 
 export const OS_ARCH_MATRIX: { [key: string]: string[] } = {
     'win': ['x86_64', 'i686'],
