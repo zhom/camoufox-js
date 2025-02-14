@@ -1,0 +1,1 @@
+export { Camoufox } from './sync_api.js';

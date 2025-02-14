@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "module": "Node16",
+      "moduleResolution": "node16",
+      "preserveConstEnums": true,
+      "sourceMap": true,
+      "outDir": "./dist",
+      "declaration": true,
+    },
+    "include": [
+      "src/**/*.ts"
+    ]
+}
