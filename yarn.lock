@@ -883,7 +883,7 @@ __metadata:
     js-yaml: "npm:^4.1.0"
     language-tags: "npm:^2.0.1"
     maxmind: "npm:^4.3.24"
-    playwright-core: "npm:^1.52.0"
+    playwright-core: "npm:^1.53.1"
     progress: "npm:^2.0.3"
     rimraf: "npm:^6.0.1"
     sqlite3: "npm:^5.1.7"
@@ -891,6 +891,8 @@ __metadata:
     ua-parser-js: "npm:^2.0.2"
     vitest: "npm:^3.1.1"
     xml2js: "npm:^0.6.2"
+  peerDependencies:
+    playwright-core: "*"
   bin:
     camoufox-js: dist/__main__.js
   languageName: unknown
@@ -2498,7 +2500,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:^1.52.0":
+"playwright-core@npm:^1.53.1":
   version: 1.53.1
   resolution: "playwright-core@npm:1.53.1"
   bin:
