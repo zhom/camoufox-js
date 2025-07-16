@@ -16,6 +16,7 @@ import AdmZip from 'adm-zip';
 import * as yaml from 'js-yaml';
 import ProgressBar from 'progress';
 import { Writable } from 'stream';
+import { setTimeout } from 'timers/promises';
 
 const ARCH_MAP: { [key: string]: string } = {
     'x64': 'x86_64',
@@ -128,13 +129,26 @@ export class GitHubDownloader {
         throw new MissingRelease(`Could not find a release asset in ${this.githubRepo}.`);
     }
 
-    async getAsset(): Promise<any> {
-        const resp = await fetch(this.apiUrl);
-        if (!resp.ok) {
-            throw new Error(`Failed to fetch releases from ${this.apiUrl}`);
+    async getAsset({ retries }: { retries: number } = { retries: 5 }): Promise<any> {
+        let attempts = 0;
+        let response: Response | undefined;
+
+        while (attempts < retries) {
+            try {
+                response = await fetch(this.apiUrl);
+                if (response.ok)
+                    break;
+            } catch (e) {
+                console.error(e, `retrying (${attempts + 1}/${retries})...`);
+                await setTimeout(5e3);
+            }
+            attempts++;
+        }
+        if (!response || !response.ok) {
+            throw new Error(`Failed to fetch releases from ${this.apiUrl} after ${retries} attempts`);
         }
 
-        const releases = await resp.json();
+        const releases = await response.json();
 
         for (const release of releases) {
             for (const asset of release.assets) {
@@ -339,10 +353,25 @@ export async function webdl(
     desc: string = '',
     bar: boolean = true,
     buffer: Writable | null = null,
+    { retries }: { retries: number } = { retries: 5 }
 ): Promise<Buffer> {
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`Failed to download file from ${url}`);
+    let attempts = 0;
+    let response: Response | undefined;
+
+    while (attempts < retries) {
+        try {
+            response = await fetch(url);
+            if (response.ok)
+                break;
+        } catch (e) {
+            console.error(e, `retrying (${attempts + 1}/${retries})...`);
+            await setTimeout(5e3);
+        }
+        attempts++;
+    }
+
+    if (!response || !response.ok) {
+        throw new Error(`Failed to download from ${url} after ${retries} attempts`);
     }
 
     const totalSize = parseInt(response.headers.get('content-length') || '0', 10);
