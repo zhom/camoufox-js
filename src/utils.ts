@@ -77,14 +77,8 @@ interface Property {
     type: string;
 }
 
-function loadProperties(filePath?: PathLike): Record<string, string> {
-    let propFile: string;
-    filePath = filePath?.toString();
-    if (filePath) {
-        propFile = path.join(path.dirname(filePath), 'properties.json');
-    } else {
-        propFile = getPath('properties.json');
-    }
+function loadProperties(executablePath?: PathLike): Record<string, string> {
+    const propFile = getPath('properties.json', executablePath)
 
     const propData = readFileSync(propFile).toString();
     const propDict: Property[] = JSON.parse(propData);
@@ -104,8 +98,8 @@ interface EnvVars {
     [key: string]: string | number | boolean;
 }
 
-function validateConfig(configMap: Record<string, string>, path?: PathLike): void {
-    const propertyTypes = loadProperties(path);
+function validateConfig(configMap: Record<string, string>, executablePath?: PathLike): void {
+    const propertyTypes = loadProperties(executablePath);
 
     for (const [key, value] of Object.entries(configMap)) {
         const expectedType = propertyTypes[key];
