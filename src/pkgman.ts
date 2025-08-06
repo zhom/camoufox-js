@@ -329,12 +329,61 @@ export function camoufoxPath(downloadIfMissing: boolean = true): PathLike {
     return INSTALL_DIR;
 }
 
-
-export function getPath(file: string): string {
+export function getPath(file: string, executablePath?: PathLike): string {
     if (OS_NAME === 'mac') {
-        return path.resolve(camoufoxPath().toString(), 'Camoufox.app', 'Contents', 'Resources', file);
+        if (!executablePath) {
+            return path.resolve(camoufoxPath().toString(), 'Camoufox.app', 'Contents', 'Resources', file);
+        }
+        
+        const execPathStr = executablePath.toString();
+        let folderPath = execPathStr;
+        
+        // Handle different possible macOS executable paths
+        if (execPathStr.includes('Camoufox.app/Contents/MacOS')) {
+            // Extract everything before 'Camoufox.app'
+            const appIndex = execPathStr.indexOf('Camoufox.app');
+            if (appIndex !== -1) {
+                folderPath = execPathStr.substring(0, appIndex).replace(/\/$/, '');
+            }
+        } else {
+            // Fallback: try to strip various possible endings
+            folderPath = execPathStr
+                .replace(/\/MacOS\/camoufox$/i, '')
+                .replace(/\/camoufox$/i, '');
+        }
+        
+        // Try multiple possible locations for the file
+        const possiblePaths = [
+            path.resolve(folderPath, 'Camoufox.app', 'Contents', 'Resources', file),
+            path.resolve(folderPath, 'Camoufox.app', 'Contents', 'MacOS', file),
+            path.resolve(folderPath, file),
+            path.resolve(folderPath, 'Resources', file),
+        ];
+        
+        for (const possiblePath of possiblePaths) {
+            if (fs.existsSync(possiblePath)) {
+                return possiblePath;
+            }
+        }
+        
+        // If none exist, return the expected path (will cause the original error)
+        const expectedPath = possiblePaths[0];
+        return expectedPath;
     }
-    return path.join(camoufoxPath().toString(), file);
+    
+    if (!executablePath) {
+        return path.join(camoufoxPath().toString(), file);
+    }
+    
+    // Handle Windows and Linux path stripping
+    let folderPath = executablePath.toString();
+    if (OS_NAME === 'win') {
+        folderPath = folderPath.replace(/\\camoufox$/i, '');
+    } else {
+        folderPath = folderPath.replace(/\/camoufox$/i, '');
+    }
+    
+    return path.join(folderPath, file);
 }
 
 
