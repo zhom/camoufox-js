@@ -1,5 +1,5 @@
 {
-  "name": "camoufox-js",
+  "name": "@donutbrowser/camoufox-js",
   "version": "0.6.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,7 @@
   "keywords": [],
   "author": "",
   "license": "MPL-2.0",
-  "description": "Experimental JS port of Camoufox for Python.",
+  "description": "Fork of camoufox-js with fixes necessary for the project",
   "packageManager": "yarn@4.9.2",
   "dependencies": {
     "adm-zip": "^0.5.16",
