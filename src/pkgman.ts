@@ -92,12 +92,14 @@ class Version {
     }
 
     static fromPath(filePath: PathLike = INSTALL_DIR): Version {
-        const versionPath = path.join(filePath.toString(), 'version.json');
-        if (!fs.existsSync(versionPath)) {
-            throw new FileNotFoundError(`Version information not found at ${versionPath}. Please run \`camoufox fetch\` to install.`);
-        }
-        const versionData = JSON.parse(fs.readFileSync(versionPath, 'utf-8'));
-        return new Version(versionData.release, versionData.version);
+        // const versionPath = path.join(filePath.toString(), 'version.json');
+        // if (!fs.existsSync(versionPath)) {
+        //     throw new FileNotFoundError(`Version information not found at ${versionPath}. Please run \`camoufox fetch\` to install.`);
+        // }
+        // const versionData = JSON.parse(fs.readFileSync(versionPath, 'utf-8'));
+        // Temporarily hardcode the version to 135 until I have a good solution to
+        // either get version without version.json or adapt it with a custom path
+        return new Version("beta.24", "135.0.1");
     }
 
     static isSupportedPath(path: PathLike): boolean {
