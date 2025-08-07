@@ -532,7 +532,9 @@ export async function launchOptions({
         ff_version_str = ff_version.toString();
         LeakWarning.warn('ff_version', i_know_what_im_doing);
     } else {
-        ff_version_str = installedVerStr().split('.', 1)[0];
+        // Temporarily hardcode the version to 135 until I have a good solution to
+        // either get version without version.json or adapt it with a custom path
+        ff_version_str = "135";
     }
 
     // Generate a fingerprint
