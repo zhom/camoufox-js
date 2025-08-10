@@ -866,38 +866,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"camoufox-js@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "camoufox-js@workspace:."
-  dependencies:
-    "@types/adm-zip": "npm:^0.5.7"
-    "@types/js-yaml": "npm:^4.0.9"
-    "@types/language-tags": "npm:^1.0.4"
-    "@types/node": "npm:^22.13.2"
-    "@types/progress": "npm:^2.0.7"
-    "@types/xml2js": "npm:^0.4.14"
-    adm-zip: "npm:^0.5.16"
-    commander: "npm:^13.1.0"
-    fingerprint-generator: "npm:^2.1.66"
-    impit: "npm:^0.5.0"
-    js-yaml: "npm:^4.1.0"
-    language-tags: "npm:^2.0.1"
-    maxmind: "npm:^4.3.24"
-    playwright-core: "npm:^1.53.1"
-    progress: "npm:^2.0.3"
-    rimraf: "npm:^6.0.1"
-    sqlite3: "npm:^5.1.7"
-    typescript: "npm:^5.8.3"
-    ua-parser-js: "npm:^2.0.2"
-    vitest: "npm:^3.1.1"
-    xml2js: "npm:^0.6.2"
-  peerDependencies:
-    playwright-core: "*"
-  bin:
-    camoufox-js: dist/__main__.js
-  languageName: unknown
-  linkType: soft
-
 "caniuse-lite@npm:^1.0.30001718":
   version: 1.0.30001721
   resolution: "caniuse-lite@npm:1.0.30001721"
@@ -1081,6 +1049,38 @@ __metadata:
   checksum: 10c0/c15541f836eba4b1f521e4eecc28eefefdbc10a94d3b8cb4c507689f332cc111babb95deda66f2de050b22122113189986d5190be97d51b5a2b23b938415e67c
   languageName: node
   linkType: hard
+
+"donutbrowser-camoufox-js@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "donutbrowser-camoufox-js@workspace:."
+  dependencies:
+    "@types/adm-zip": "npm:^0.5.7"
+    "@types/js-yaml": "npm:^4.0.9"
+    "@types/language-tags": "npm:^1.0.4"
+    "@types/node": "npm:^22.13.2"
+    "@types/progress": "npm:^2.0.7"
+    "@types/xml2js": "npm:^0.4.14"
+    adm-zip: "npm:^0.5.16"
+    commander: "npm:^13.1.0"
+    fingerprint-generator: "npm:^2.1.66"
+    impit: "npm:^0.5.0"
+    js-yaml: "npm:^4.1.0"
+    language-tags: "npm:^2.0.1"
+    maxmind: "npm:^4.3.24"
+    playwright-core: "npm:^1.53.1"
+    progress: "npm:^2.0.3"
+    rimraf: "npm:^6.0.1"
+    sqlite3: "npm:^5.1.7"
+    typescript: "npm:^5.8.3"
+    ua-parser-js: "npm:^2.0.2"
+    vitest: "npm:^3.1.1"
+    xml2js: "npm:^0.6.2"
+  peerDependencies:
+    playwright-core: "*"
+  bin:
+    donutbrowser-camoufox-js: dist/__main__.js
+  languageName: unknown
+  linkType: soft
 
 "dot-prop@npm:^6.0.1":
   version: 6.0.1
